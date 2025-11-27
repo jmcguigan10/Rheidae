@@ -183,11 +183,6 @@ def main():
         default=None,
         help="Optional run identifier; defaults to timestamp YYYYmmdd-HHMMSS.",
     )
-    parser.add_argument(
-        "--run-id",
-        default=None,
-        help="Optional run identifier; defaults to timestamp YYYYmmdd-HHMMSS.",
-    )
     args = parser.parse_args()
 
     exp_cfg = ExperimentConfig.load(args.config)
