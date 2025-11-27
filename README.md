@@ -62,7 +62,7 @@ PYTHONPATH=src .venv/bin/python scripts/train.py \
 - `make slurm-train`: submit the Slurm script at `.slurm/train.sbatch` (run on the cluster where `sbatch` is available).
 
 ## Slurm submission
-A template Slurm script lives at `.slurm/train.sbatch`. Adjust `--chdir` to your cluster path and venv path as needed (defaults to `/nfs/home/jmcguig1/venv_Emu`). Logs go to `.slurm/output/train-%j.out|err`. It runs `make install` then `make train`, honoring `VENV` from the environment, so you can override the venv path without editing the Makefile.
+A template Slurm script lives at `.slurm/train.sbatch`. Adjust `--chdir` to your cluster path and venv path as needed (defaults to `/nfs/home/jmcguig1/venv_Emu`). Logs go to `.slurm/output/train-%j.out|err`. It runs `make install`, checks for `.pdata/preprocessed_all.h5` and runs `make preprocess` if missing, then runs `make train`, honoring `VENV` from the environment so you can override the venv path without editing the Makefile.
 
 ## Notes
 - Ensure `.pdata/preprocessed_all.h5` exists before training (run `make preprocess`).
