@@ -121,7 +121,13 @@ def build_dataloaders(
     n_total = len(dataset)
     n_test = int(round(data_cfg.test_split * n_total))
     n_val = int(round(data_cfg.val_split * n_total))
-    n_train = max(n_total - n_val - n_test, 0)
+    n_train = max(n_total - n_val - n_test, 1)
+    # Adjust to ensure sums exactly match n_total
+    excess = (n_train + n_val + n_test) - n_total
+    if excess > 0:
+        n_train = max(n_train - excess, 1)
+    elif excess < 0:
+        n_train = n_train - excess  # add missing samples to train
 
     generator = torch.Generator().manual_seed(data_cfg.seed)
     splits = random_split(

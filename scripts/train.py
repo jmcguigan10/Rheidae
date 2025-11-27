@@ -321,8 +321,10 @@ def main():
             exp_cfg.training.grad_clip,
         )
         val_loss = evaluate(model, loaders["val"], loss_cfg, device)
+        val_zero = evaluate_zero_residual(loaders["val"], loss_cfg, device)
         print(
-            f"Run {run_id} Epoch {epoch}: train_loss={train_loss:.4f} val_loss={val_loss:.4f}"
+            f"Run {run_id} Epoch {epoch}: train_loss={train_loss:.4f} "
+            f"val_loss={val_loss:.4f} val_box3d_baseline={val_zero:.4f}"
         )
 
         # LR scheduling
