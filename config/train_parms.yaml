@@ -30,5 +30,15 @@ lr_scheduler:
   min_lr: 1.0e-6
   threshold: 1.0e-3
 
+lr_warmup:
+  enabled: true
+  warmup_epochs: 5
+  start_factor: 0.1           # initial LR = start_factor * base_lr
+
+bn_recalibrate:
+  enabled: true
+  warmup_epochs: 5            # epoch number to trigger recalibration/freeze
+  max_batches: 200            # cap batches during BN stat recompute (null for all)
+
 logging:
   save_every: 0       # set >0 to checkpoint every N epochs; 0 disables

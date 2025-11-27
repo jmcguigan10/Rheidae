@@ -161,6 +161,42 @@ def evaluate_zero_residual(
     return total / max(n_batches, 1)
 
 
+@torch.no_grad()
+def recalibrate_and_freeze_bn(
+    model: torch.nn.Module,
+    loader: torch.utils.data.DataLoader,
+    device,
+    max_batches: Optional[int] = None,
+):
+    """
+    Recompute BN running stats on a pass over the train loader (dropout disabled),
+    then freeze BN layers (eval mode, momentum=0).
+    """
+    # disable dropout during stat recompute
+    saved_p = []
+    for m in model.modules():
+        if isinstance(m, torch.nn.Dropout):
+            saved_p.append((m, m.p))
+            m.p = 0.0
+
+    model.train()
+    for i, batch in enumerate(loader):
+        inputs = batch["input"].to(device)
+        _ = model(inputs)
+        if max_batches is not None and (i + 1) >= max_batches:
+            break
+
+    # restore dropout
+    for m, p in saved_p:
+        m.p = p
+
+    # freeze BN stats
+    for m in model.modules():
+        if isinstance(m, torch.nn.modules.batchnorm._BatchNorm):
+            m.eval()
+            m.momentum = 0.0
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -254,6 +290,22 @@ def main():
             min_lr=float(sched_cfg.get("min_lr", 1e-6)),
         )
 
+    warmup_cfg = train_cfg.get("lr_warmup", {}) or {}
+    warmup_scheduler = None
+    warmup_epochs = int(warmup_cfg.get("warmup_epochs", 0))
+    if warmup_cfg.get("enabled", False) and warmup_epochs > 0:
+        warmup_scheduler = torch.optim.lr_scheduler.LinearLR(
+            optimizer,
+            start_factor=float(warmup_cfg.get("start_factor", 0.1)),
+            total_iters=warmup_epochs,
+        )
+
+    bn_cfg = train_cfg.get("bn_recalibrate", {}) or {}
+    bn_enabled = bool(bn_cfg.get("enabled", False))
+    bn_warmup_epoch = int(bn_cfg.get("warmup_epochs", 0))
+    bn_max_batches = bn_cfg.get("max_batches", None)
+    bn_frozen = False
+
     print(f"Run ID: {run_id}")
 
     for epoch in range(1, exp_cfg.training.epochs + 1):
@@ -273,7 +325,10 @@ def main():
             f"Run {run_id} Epoch {epoch}: train_loss={train_loss:.4f} val_loss={val_loss:.4f}"
         )
 
-        if scheduler is not None and isinstance(
+        # LR scheduling
+        if warmup_scheduler is not None and epoch <= warmup_epochs:
+            warmup_scheduler.step()
+        elif scheduler is not None and isinstance(
             scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau
         ):
             scheduler.step(val_loss)
@@ -301,6 +356,21 @@ def main():
                 f"Early stopping at epoch {epoch} (patience={patience}, best_epoch={best_epoch}, best_val={best_val:.4f})"
             )
             break
+
+        # BN recalibration/freeze
+        if (
+            bn_enabled
+            and not bn_frozen
+            and bn_warmup_epoch > 0
+            and epoch == bn_warmup_epoch
+        ):
+            recalibrate_and_freeze_bn(
+                model,
+                loaders["train"],
+                device,
+                max_batches=bn_max_batches,
+            )
+            bn_frozen = True
 
     test_loss = evaluate(model, loaders["test"], loss_cfg, device)
     zero_baseline = evaluate_zero_residual(loaders["test"], loss_cfg, device)
