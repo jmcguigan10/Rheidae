@@ -12,7 +12,7 @@ data:
   seed: 42
   pin_memory: true
   drop_last: false
-  target_scale: 1.0e-33  # applied to both inputs and targets to keep values O(1)
+  target_scale: 1.0e-33 # applied to both inputs and targets to keep values O(1)
 
 model:
   input_dim: 48
@@ -35,7 +35,7 @@ scheduler:
   max_lr: null
 
 training:
-  epochs: 50
+  epochs: 1000
   grad_clip: 1.0
   mixed_precision: true
   log_interval: 10

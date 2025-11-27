@@ -3,6 +3,7 @@ VENV ?= .venv
 PIP := $(VENV)/bin/pip
 PY := $(VENV)/bin/python
 PYTHONPATH := src
+LOG := slurm/output
 
 .ONESHELL:
 .SHELLFLAGS := -eu -o pipefail -c
