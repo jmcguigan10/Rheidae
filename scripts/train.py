@@ -150,11 +150,9 @@ def evaluate_zero_residual(
     """
     total = 0.0
     n_batches = 0
-    zero_pred = None
     for batch in loader:
         targets = batch["target"].to(device)
-        if zero_pred is None:
-            zero_pred = torch.zeros_like(targets)
+        zero_pred = torch.zeros_like(targets)
         task_losses = compute_flux_losses(zero_pred, targets, loss_cfg)
         total += sum(task_losses.values()).item()
         n_batches += 1
