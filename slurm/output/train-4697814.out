@@ -1,0 +1,369 @@
+make[1]: Entering directory '/nfs/home/jmcguig1/Rheidae'
+/nfs/home/jmcguig1/venv_Emu/bin/pip install -r requirements.txt
+Requirement already satisfied: torch in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.7.1)
+Requirement already satisfied: pyyaml in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: h5py in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (3.13.0)
+Requirement already satisfied: numpy in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (1.26.4)
+Requirement already satisfied: matplotlib in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 5)) (3.9.4)
+Requirement already satisfied: filelock in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.17.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (4.12.2)
+Requirement already satisfied: sympy>=1.13.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.2.1)
+Requirement already satisfied: jinja2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.1.5)
+Requirement already satisfied: fsspec in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2025.2.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.3.1)
+Requirement already satisfied: setuptools>=40.8.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from triton==3.3.1->torch->-r requirements.txt (line 1)) (80.9.0)
+Requirement already satisfied: contourpy>=1.0.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (1.3.0)
+Requirement already satisfied: cycler>=0.10 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (0.12.1)
+Requirement already satisfied: fonttools>=4.22.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (4.56.0)
+Requirement already satisfied: kiwisolver>=1.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (1.4.7)
+Requirement already satisfied: packaging>=20.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (24.2)
+Requirement already satisfied: pillow>=8 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (11.1.0)
+Requirement already satisfied: pyparsing>=2.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (3.2.1)
+Requirement already satisfied: python-dateutil>=2.7 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (2.9.0.post0)
+Requirement already satisfied: importlib-resources>=3.2.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (6.5.2)
+Requirement already satisfied: zipp>=3.1.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from importlib-resources>=3.2.0->matplotlib->-r requirements.txt (line 5)) (3.21.0)
+Requirement already satisfied: six>=1.5 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from python-dateutil>=2.7->matplotlib->-r requirements.txt (line 5)) (1.17.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from jinja2->torch->-r requirements.txt (line 1)) (3.0.2)
+PYTHONPATH=src /nfs/home/jmcguig1/venv_Emu/bin/python scripts/train.py --config config/model.yaml --train-parms config/train_parms.yaml
+Run ID: 20251127-082015
+Run 20251127-082015 Epoch 1: train_loss=96.3849 val_loss=16.8542 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 2: train_loss=11.1842 val_loss=3.9814 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 3: train_loss=3.7416 val_loss=3.1713 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 4: train_loss=2.3882 val_loss=2.7489 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 5: train_loss=2.6242 val_loss=2.9284 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 6: train_loss=2.3542 val_loss=4.4121 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 7: train_loss=2.8481 val_loss=4.4672 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 8: train_loss=2.3890 val_loss=4.4140 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 9: train_loss=4.0042 val_loss=7.6703 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 10: train_loss=1.5889 val_loss=6.8254 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 11: train_loss=3.8412 val_loss=5.5078 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 12: train_loss=1.4866 val_loss=5.1100 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 13: train_loss=1.2287 val_loss=3.6683 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 14: train_loss=1.0833 val_loss=5.8292 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 15: train_loss=1.1833 val_loss=3.5331 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 16: train_loss=1.2878 val_loss=3.4818 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 17: train_loss=0.9029 val_loss=3.0526 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 18: train_loss=0.8744 val_loss=2.7646 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 19: train_loss=1.0139 val_loss=3.5274 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 20: train_loss=0.9116 val_loss=4.6403 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 21: train_loss=0.8569 val_loss=3.3230 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 22: train_loss=1.0018 val_loss=2.7875 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 23: train_loss=0.8758 val_loss=3.3235 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 24: train_loss=1.0491 val_loss=2.0390 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 25: train_loss=0.8162 val_loss=2.5989 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 26: train_loss=0.7191 val_loss=2.2767 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 27: train_loss=1.0502 val_loss=2.9562 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 28: train_loss=0.8449 val_loss=2.1799 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 29: train_loss=0.7637 val_loss=2.0388 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 30: train_loss=0.7358 val_loss=1.8639 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 31: train_loss=0.9565 val_loss=4.1818 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 32: train_loss=0.7869 val_loss=2.4171 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 33: train_loss=0.7446 val_loss=2.0089 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 34: train_loss=0.6583 val_loss=2.2439 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 35: train_loss=0.8303 val_loss=1.8402 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 36: train_loss=0.8316 val_loss=2.2789 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 37: train_loss=0.8213 val_loss=1.7991 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 38: train_loss=0.7273 val_loss=20.6900 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 39: train_loss=0.7533 val_loss=1.9335 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 40: train_loss=0.7244 val_loss=4.5977 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 41: train_loss=0.6910 val_loss=2.2846 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 42: train_loss=0.6700 val_loss=1.9476 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 43: train_loss=0.7404 val_loss=1.7328 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 44: train_loss=0.6622 val_loss=1.5867 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 45: train_loss=0.6422 val_loss=1.5009 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 46: train_loss=0.5699 val_loss=1.5830 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 47: train_loss=0.7344 val_loss=1.6693 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 48: train_loss=0.6432 val_loss=1.8177 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 49: train_loss=0.6346 val_loss=1.6006 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 50: train_loss=0.5871 val_loss=1.3703 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 51: train_loss=0.5840 val_loss=2.1833 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 52: train_loss=0.5995 val_loss=1.3789 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 53: train_loss=0.5955 val_loss=1.1894 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 54: train_loss=0.5772 val_loss=1.3589 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 55: train_loss=0.5568 val_loss=1.1318 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 56: train_loss=0.5569 val_loss=1.3437 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 57: train_loss=0.5497 val_loss=1.4450 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 58: train_loss=0.5431 val_loss=1.2067 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 59: train_loss=0.5534 val_loss=1.3691 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 60: train_loss=0.5346 val_loss=1.1685 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 61: train_loss=0.5396 val_loss=1.1175 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 62: train_loss=0.5217 val_loss=1.1271 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 63: train_loss=0.5202 val_loss=1.1312 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 64: train_loss=0.5200 val_loss=1.0968 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 65: train_loss=0.5187 val_loss=1.0701 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 66: train_loss=0.5135 val_loss=1.0642 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 67: train_loss=0.5121 val_loss=1.0568 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 68: train_loss=0.5099 val_loss=1.0388 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 69: train_loss=0.5117 val_loss=1.0483 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 70: train_loss=0.5087 val_loss=1.0317 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 71: train_loss=0.5066 val_loss=1.0242 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 72: train_loss=0.5083 val_loss=1.0355 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 73: train_loss=0.5070 val_loss=1.0285 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 74: train_loss=0.5047 val_loss=1.0165 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 75: train_loss=0.5050 val_loss=1.0215 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 76: train_loss=0.5041 val_loss=1.0261 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 77: train_loss=0.5039 val_loss=1.0191 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 78: train_loss=0.5034 val_loss=1.0119 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 79: train_loss=0.5031 val_loss=1.0115 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 80: train_loss=0.5025 val_loss=1.0109 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 81: train_loss=0.5027 val_loss=1.0133 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 82: train_loss=0.5025 val_loss=1.0079 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 83: train_loss=0.5021 val_loss=1.0078 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 84: train_loss=0.5022 val_loss=1.0206 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 85: train_loss=0.5021 val_loss=1.0091 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 86: train_loss=0.5019 val_loss=1.0067 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 87: train_loss=0.5014 val_loss=1.0116 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 88: train_loss=0.5021 val_loss=1.0120 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 89: train_loss=0.5015 val_loss=1.0061 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 90: train_loss=0.5014 val_loss=1.0061 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 91: train_loss=0.5016 val_loss=1.0070 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 92: train_loss=0.5013 val_loss=1.0082 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 93: train_loss=0.5011 val_loss=1.0044 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 94: train_loss=0.5009 val_loss=1.0042 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 95: train_loss=0.5009 val_loss=1.0040 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 96: train_loss=0.5009 val_loss=1.0040 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 97: train_loss=0.5008 val_loss=1.0038 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 98: train_loss=0.5008 val_loss=1.0037 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 99: train_loss=0.5008 val_loss=1.0039 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 100: train_loss=0.5007 val_loss=1.0034 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 101: train_loss=0.5007 val_loss=1.0036 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 102: train_loss=0.5007 val_loss=1.0035 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 103: train_loss=0.5007 val_loss=1.0035 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 104: train_loss=0.5007 val_loss=1.0034 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 105: train_loss=0.5007 val_loss=1.0033 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 106: train_loss=0.5007 val_loss=1.0034 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 107: train_loss=0.5007 val_loss=1.0032 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 108: train_loss=0.5006 val_loss=1.0031 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 109: train_loss=0.5006 val_loss=1.0030 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 110: train_loss=0.5006 val_loss=1.0030 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 111: train_loss=0.5006 val_loss=1.0030 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 112: train_loss=0.5006 val_loss=1.0029 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 113: train_loss=0.5006 val_loss=1.0028 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 114: train_loss=0.5006 val_loss=1.0029 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 115: train_loss=0.5006 val_loss=1.0029 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 116: train_loss=0.5006 val_loss=1.0028 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 117: train_loss=0.5006 val_loss=1.0028 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 118: train_loss=0.5006 val_loss=1.0027 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 119: train_loss=0.5005 val_loss=1.0028 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 120: train_loss=0.5005 val_loss=1.0028 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 121: train_loss=0.5005 val_loss=1.0027 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 122: train_loss=0.5005 val_loss=1.0027 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 123: train_loss=0.5005 val_loss=1.0027 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 124: train_loss=0.5005 val_loss=1.0027 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 125: train_loss=0.5005 val_loss=1.0027 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 126: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 127: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 128: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 129: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 130: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 131: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 132: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 133: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 134: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 135: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 136: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 137: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 138: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 139: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 140: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 141: train_loss=0.5005 val_loss=1.0026 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 142: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 143: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 144: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 145: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 146: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 147: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 148: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 149: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 150: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 151: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 152: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 153: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 154: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 155: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 156: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 157: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 158: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 159: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 160: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 161: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 162: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 163: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 164: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 165: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 166: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 167: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 168: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 169: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 170: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 171: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 172: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 173: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 174: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 175: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 176: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 177: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 178: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 179: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 180: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 181: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 182: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 183: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 184: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 185: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 186: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 187: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 188: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 189: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 190: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 191: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 192: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 193: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 194: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 195: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 196: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 197: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 198: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 199: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 200: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 201: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 202: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 203: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 204: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 205: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 206: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 207: train_loss=0.5005 val_loss=1.0025 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 208: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 209: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 210: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 211: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 212: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 213: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 214: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 215: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 216: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 217: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 218: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 219: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 220: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 221: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 222: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 223: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 224: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 225: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 226: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 227: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 228: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 229: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 230: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 231: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 232: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 233: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 234: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 235: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 236: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 237: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 238: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 239: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 240: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 241: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 242: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 243: train_loss=0.5005 val_loss=1.0024 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 244: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 245: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 246: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 247: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 248: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 249: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 250: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 251: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 252: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 253: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 254: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 255: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 256: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 257: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 258: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 259: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 260: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 261: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 262: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 263: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 264: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 265: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 266: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 267: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 268: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 269: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 270: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 271: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 272: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 273: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 274: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 275: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 276: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 277: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 278: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 279: train_loss=0.5005 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 280: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 281: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 282: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 283: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 284: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 285: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 286: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 287: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 288: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 289: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 290: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 291: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 292: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 293: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 294: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 295: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 296: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 297: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 298: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 299: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 300: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 301: train_loss=0.5004 val_loss=1.0023 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 302: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 303: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 304: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 305: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 306: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 307: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 308: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 309: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 310: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 311: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 312: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 313: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 314: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 315: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 316: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 317: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 318: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 319: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 320: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 321: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 322: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 323: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 324: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
+Run 20251127-082015 Epoch 325: train_loss=0.5004 val_loss=1.0022 val_box3d_baseline=1.0000
