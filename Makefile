@@ -32,7 +32,7 @@ smoke: install
 clean:
 	rm -rf $(VENV) checkpoints results
 
-SLURM_SCRIPT := .slurm/train.sbatch
+SLURM_SCRIPT := slurm/train.sbatch
 
 slurm-train:
 	@[ -f $(SLURM_SCRIPT) ] || (echo "Missing $(SLURM_SCRIPT); edit or copy it before submitting." && exit 1)

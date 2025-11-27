@@ -9,9 +9,9 @@
 #SBATCH --gpus=1
 #SBATCH --mem=32G
 #SBATCH --time=24:00:00
-#SBATCH --chdir=~/Rheidae
-#SBATCH -o .slurm/output/train-%j.out
-#SBATCH -e .slurm/output/train-%j.err
+#SBATCH --chdir=/nfs/home/jmcguig1/Rheidae
+#SBATCH -o slurm/output/train-%j.out
+#SBATCH -e slurm/output/train-%j.err
 
 module load gcc/10.2.0
 module load openmpi/4.0.3-gcc
@@ -30,5 +30,5 @@ export VENV=/nfs/home/jmcguig1/venv_Emu
 export PYTHONPATH=src
 
 # Install deps (no-op if already installed) and run training
-srun make install
+# srun make install
 srun make train

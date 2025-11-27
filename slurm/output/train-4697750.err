@@ -1,0 +1,27 @@
+
+[notice] A new release of pip is available: 25.2 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 25.2 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+Traceback (most recent call last):
+  File "/nfs/home/jmcguig1/Rheidae/scripts/train.py", line 241, in <module>
+    main()
+  File "/nfs/home/jmcguig1/Rheidae/scripts/train.py", line 166, in main
+    loaders = build_dataloaders(exp_cfg.data, predict_residual=predict_residual)
+  File "/nfs/home/jmcguig1/Rheidae/src/rheidae/data_loader.py", line 113, in build_dataloaders
+    dataset = FluxDataset(
+  File "/nfs/home/jmcguig1/Rheidae/src/rheidae/data_loader.py", line 62, in __init__
+    inputs_np, targets_np, f_box_np = _load_arrays(
+  File "/nfs/home/jmcguig1/Rheidae/src/rheidae/data_loader.py", line 37, in _load_arrays
+    with h5py.File(path, "r") as h5:
+  File "/nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages/h5py/_hl/files.py", line 564, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages/h5py/_hl/files.py", line 238, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to synchronously open file (unable to open file: name = '.pdata/preprocessed_all.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+make[1]: *** [Makefile:24: train] Error 1
+srun: error: clrv1207: task 0: Exited with exit code 2

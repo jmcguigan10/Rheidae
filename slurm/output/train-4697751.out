@@ -1,0 +1,114 @@
+make[1]: Entering directory '/nfs/home/jmcguig1/Rheidae'
+/nfs/home/jmcguig1/venv_Emu/bin/pip install -r requirements.txt
+Requirement already satisfied: torch in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.7.1)
+Requirement already satisfied: pyyaml in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: h5py in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (3.13.0)
+Requirement already satisfied: numpy in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (1.26.4)
+Requirement already satisfied: filelock in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.17.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (4.12.2)
+Requirement already satisfied: sympy>=1.13.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.2.1)
+Requirement already satisfied: jinja2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.1.5)
+Requirement already satisfied: fsspec in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2025.2.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.3.1)
+Requirement already satisfied: setuptools>=40.8.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from triton==3.3.1->torch->-r requirements.txt (line 1)) (80.9.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from jinja2->torch->-r requirements.txt (line 1)) (3.0.2)
+make[1]: Leaving directory '/nfs/home/jmcguig1/Rheidae'
+make[1]: Entering directory '/nfs/home/jmcguig1/Rheidae'
+/nfs/home/jmcguig1/venv_Emu/bin/pip install -r requirements.txt
+Requirement already satisfied: torch in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.7.1)
+Requirement already satisfied: pyyaml in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: h5py in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (3.13.0)
+Requirement already satisfied: numpy in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (1.26.4)
+Requirement already satisfied: filelock in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.17.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (4.12.2)
+Requirement already satisfied: sympy>=1.13.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.2.1)
+Requirement already satisfied: jinja2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.1.5)
+Requirement already satisfied: fsspec in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2025.2.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.3.1)
+Requirement already satisfied: setuptools>=40.8.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from triton==3.3.1->torch->-r requirements.txt (line 1)) (80.9.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from jinja2->torch->-r requirements.txt (line 1)) (3.0.2)
+PYTHONPATH=src /nfs/home/jmcguig1/venv_Emu/bin/python scripts/train.py --config config/model.yaml --train-parms config/train_parms.yaml
+Epoch 1: train_loss=19.3088 val_loss=15.6152
+Epoch 2: train_loss=5.9038 val_loss=28.5860
+Epoch 3: train_loss=5.0334 val_loss=6.3313
+Epoch 4: train_loss=3.9974 val_loss=8.8784
+Epoch 5: train_loss=3.9839 val_loss=4.2653
+Epoch 6: train_loss=3.5985 val_loss=2.8748
+Epoch 7: train_loss=4.2803 val_loss=2.5815
+Epoch 8: train_loss=4.2947 val_loss=2.7235
+Epoch 9: train_loss=3.1800 val_loss=4.8612
+Epoch 10: train_loss=2.6101 val_loss=4.1679
+Epoch 11: train_loss=1.7733 val_loss=1.8241
+Epoch 12: train_loss=1.6477 val_loss=2.1726
+Epoch 13: train_loss=2.6085 val_loss=2.5380
+Epoch 14: train_loss=1.9799 val_loss=2.2174
+Epoch 15: train_loss=3.0135 val_loss=2.2023
+Epoch 16: train_loss=1.6606 val_loss=2.0881
+Epoch 17: train_loss=2.8463 val_loss=1.7974
+Epoch 18: train_loss=1.5520 val_loss=2.3080
+Epoch 19: train_loss=1.9284 val_loss=1.9790
+Epoch 20: train_loss=1.8411 val_loss=3.5207
+Epoch 21: train_loss=2.1108 val_loss=1.7951
+Epoch 22: train_loss=2.3938 val_loss=3.0928
+Epoch 23: train_loss=1.2159 val_loss=1.7746
+Epoch 24: train_loss=1.0391 val_loss=1.8046
+Epoch 25: train_loss=1.6186 val_loss=1.7558
+Epoch 26: train_loss=2.1961 val_loss=1.7531
+Epoch 27: train_loss=1.8329 val_loss=17.0580
+Epoch 28: train_loss=1.5932 val_loss=23.8914
+Epoch 29: train_loss=2.6838 val_loss=1.4985
+Epoch 30: train_loss=2.8281 val_loss=1.6660
+Epoch 31: train_loss=1.5997 val_loss=1.7486
+Epoch 32: train_loss=1.3672 val_loss=1.4457
+Epoch 33: train_loss=1.5993 val_loss=1.6691
+Epoch 34: train_loss=1.1352 val_loss=1.3613
+Epoch 35: train_loss=0.9934 val_loss=1.9913
+Epoch 36: train_loss=0.9129 val_loss=1.2612
+Epoch 37: train_loss=1.3498 val_loss=5.7614
+Epoch 38: train_loss=1.2240 val_loss=4.7496
+Epoch 39: train_loss=1.2739 val_loss=1.5330
+Epoch 40: train_loss=0.8111 val_loss=1.2310
+Epoch 41: train_loss=0.9751 val_loss=3.7262
+Epoch 42: train_loss=1.3467 val_loss=4.6096
+Epoch 43: train_loss=1.4634 val_loss=1.1163
+Epoch 44: train_loss=0.8440 val_loss=1.1289
+Epoch 45: train_loss=1.0458 val_loss=2.7591
+Epoch 46: train_loss=1.7377 val_loss=1.1154
+Epoch 47: train_loss=0.9508 val_loss=1.1823
+Epoch 48: train_loss=1.1210 val_loss=1.2189
+Epoch 49: train_loss=0.9732 val_loss=3.7480
+Epoch 50: train_loss=0.9724 val_loss=3.2192
+Test loss: 2.9292
+make[1]: Leaving directory '/nfs/home/jmcguig1/Rheidae'
