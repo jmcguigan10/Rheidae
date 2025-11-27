@@ -1,0 +1,38 @@
+# config/pre_process.yaml
+
+# Locations for raw HDF5 inputs and preprocessed outputs.
+data_root: "./.data"
+output_root: "./.pdata"
+box3d_mu_fraction: 0.5 # fraction of νx/ν̄x assigned to μ (rest to τ) after Box3D
+
+# HDF5 dataset paths inside each Emu_data file.
+# Shapes from Zenodo:
+#   F4_initial: [sample, 4 spacetime comps, 2 nu/antinu, 3 flavors]
+#   F4_final:   same
+#   directorynames: [sample] (strings)
+h5_paths:
+  F_init: "F4_initial(1|ccm)"
+  F_true: "F4_final(1|ccm)"
+  dirnames: "directorynames"
+
+files:
+  - name: "M1NuLib_3ms_rl1"
+    path: "M1NuLib_3ms_rl1.h5"
+    sim_id: "M1_NuLib_3ms"
+    enabled: true
+
+  - name: "M1NuLib_7ms_rl1"
+    path: "M1NuLib_7ms_rl1.h5"
+    sim_id: "M1_NuLib_7ms"
+    enabled: true
+
+  - name: "random"
+    path: "random.h5"
+    sim_id: "random"
+    enabled: true
+
+lebedev_order: 13
+
+output_filename: "preprocessed_all.h5"
+shuffle: true
+seed: 1234

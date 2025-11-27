@@ -1,0 +1,241 @@
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+from typing import Dict, List, Optional
+
+import torch
+import yaml
+
+from rheidae.config import ExperimentConfig, LossConfig
+from rheidae.data_loader import build_dataloaders
+from rheidae.losses import compute_flux_losses
+from rheidae.model import ResidualFFIModel
+from rheidae.pcgrad import PCGrad
+from rheidae.ecm import EqualityConstraintManager
+from rheidae.wloss import DWALossWeighter, GradNormWeighter, KendallGalWeighter
+
+
+def _active_tasks(loss_cfg: LossConfig) -> List[str]:
+    tasks = []
+    if loss_cfg.w_density > 0:
+        tasks.append("density")
+    if loss_cfg.w_magnitude > 0:
+        tasks.append("magnitude")
+    if loss_cfg.w_direction > 0:
+        tasks.append("direction")
+    if loss_cfg.w_residual_l1 > 0:
+        tasks.append("residual_l1")
+    if loss_cfg.w_unphysical > 0:
+        tasks.append("unphysical")
+    if not tasks:
+        raise ValueError("No active loss components; enable at least one weight.")
+    return tasks
+
+
+def _build_weighter(weighting_cfg: Dict, task_names: List[str], device) -> Optional[object]:
+    scheme = (weighting_cfg or {}).get("scheme", "none")
+    params = (weighting_cfg or {}).get("params", {}) or {}
+
+    if scheme == "none":
+        return None
+    if scheme == "kendall_gal":
+        return KendallGalWeighter(task_names)
+    if scheme == "dwa":
+        T = float(params.get("T", 2.0))
+        return DWALossWeighter(task_names, T=T, device=device)
+    if scheme == "gradnorm":
+        alpha = float(params.get("alpha", 1.5))
+        lam = float(params.get("lambda_gradnorm", 0.1))
+        return GradNormWeighter(task_names, alpha=alpha, lambda_gradnorm=lam, device=device)
+    raise ValueError(f"Unknown weighting scheme '{scheme}'")
+
+
+def _load_train_parms(path: Path) -> Dict:
+    return yaml.safe_load(path.read_text()) or {}
+
+
+def _maybe_clip_gradients(model: torch.nn.Module, max_norm: float):
+    if max_norm and max_norm > 0:
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm)
+
+
+def train_one_epoch(
+    model: torch.nn.Module,
+    loader: torch.utils.data.DataLoader,
+    loss_cfg: LossConfig,
+    weighter,
+    pcgrad: Optional[PCGrad],
+    optimizer: torch.optim.Optimizer,
+    constraint_mgr: Optional[EqualityConstraintManager],
+    device,
+    grad_clip: float,
+) -> float:
+    model.train()
+    total = 0.0
+    n_batches = 0
+
+    for batch in loader:
+        inputs = batch["input"].to(device)
+        targets = batch["target"].to(device)
+
+        preds = model(inputs)
+        task_losses = compute_flux_losses(preds, targets, loss_cfg)
+
+        if weighter is None:
+            total_task_loss = sum(task_losses.values())
+            per_task_weighted = list(task_losses.values())
+        elif isinstance(weighter, GradNormWeighter):
+            total_task_loss, per_task_weighted = weighter(
+                task_losses, shared_params=model.parameters()
+            )
+        else:
+            total_task_loss, per_task_weighted = weighter(task_losses)
+
+        augmented_loss = total_task_loss
+        extra_task = []
+        if constraint_mgr is not None:
+            c_vec = torch.zeros(
+                constraint_mgr.num_constraints, device=device, dtype=targets.dtype
+            )
+            augmented_loss = constraint_mgr.augment_loss(total_task_loss, c_vec)
+            extra_task = [augmented_loss - total_task_loss]
+
+        optimizer.zero_grad()
+        if pcgrad is not None:
+            pcgrad.pc_backward(per_task_weighted + extra_task)
+            _maybe_clip_gradients(model, grad_clip)
+            pcgrad.step()
+        else:
+            augmented_loss.backward()
+            _maybe_clip_gradients(model, grad_clip)
+            optimizer.step()
+
+        if constraint_mgr is not None:
+            constraint_mgr.update_multipliers(c_vec)
+
+        total += augmented_loss.detach().item()
+        n_batches += 1
+
+    return total / max(n_batches, 1)
+
+
+@torch.no_grad()
+def evaluate(
+    model: torch.nn.Module,
+    loader: torch.utils.data.DataLoader,
+    loss_cfg: LossConfig,
+    device,
+) -> float:
+    model.eval()
+    total = 0.0
+    n_batches = 0
+    for batch in loader:
+        inputs = batch["input"].to(device)
+        targets = batch["target"].to(device)
+        preds = model(inputs)
+        task_losses = compute_flux_losses(preds, targets, loss_cfg)
+        total += sum(task_losses.values()).item()
+        n_batches += 1
+    return total / max(n_batches, 1)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--config",
+        default="config/model.yaml",
+        help="Path to experiment config (matches config.py schema).",
+    )
+    parser.add_argument(
+        "--train-parms",
+        default="config/train_parms.yaml",
+        help="Path to training control parameters.",
+    )
+    parser.add_argument(
+        "--predict-residual",
+        action="store_true",
+        help="Override train_parms to train on (F_true - F_box).",
+    )
+    args = parser.parse_args()
+
+    exp_cfg = ExperimentConfig.load(args.config)
+    train_cfg = _load_train_parms(Path(args.train_parms))
+
+    predict_residual = args.predict_residual or bool(train_cfg.get("predict_residual", False))
+    loaders = build_dataloaders(exp_cfg.data, predict_residual=predict_residual)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    model = ResidualFFIModel(
+        input_dim=exp_cfg.model.input_dim,
+        hidden_dim=exp_cfg.model.hidden_dim,
+        hidden_layers=exp_cfg.model.hidden_layers,
+        activation=exp_cfg.model.activation,
+        dropout=exp_cfg.model.dropout,
+        use_batch_norm=exp_cfg.model.use_batch_norm,
+        output_dim=exp_cfg.model.output_dim,
+    ).to(device)
+
+    optimizer = torch.optim.AdamW(
+        model.parameters(),
+        lr=exp_cfg.optimizer.lr,
+        weight_decay=exp_cfg.optimizer.weight_decay,
+        betas=exp_cfg.optimizer.betas,
+        eps=exp_cfg.optimizer.eps,
+    )
+    pcgrad = PCGrad(optimizer) if train_cfg.get("pcgrad", False) else None
+
+    constraint_cfg = train_cfg.get("constraints", {}) or {}
+    constraint_mgr = None
+    if constraint_cfg.get("enabled", False) and constraint_cfg.get("num_constraints", 0) > 0:
+        constraint_mgr = EqualityConstraintManager(
+            num_constraints=int(constraint_cfg["num_constraints"]),
+            lr_lambda=float(constraint_cfg.get("lr_lambda", 1e-2)),
+            rho=float(constraint_cfg.get("rho", 0.0)),
+            device=device,
+        )
+
+    loss_cfg = exp_cfg.loss
+    task_names = _active_tasks(loss_cfg)
+    weighter = _build_weighter(train_cfg.get("weighting", {}), task_names, device)
+
+    best_val = float("inf")
+    save_every = int(train_cfg.get("logging", {}).get("save_every", 0) or 0)
+    checkpoint_dir = Path(exp_cfg.training.checkpoint_dir)
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+
+    for epoch in range(1, exp_cfg.training.epochs + 1):
+        train_loss = train_one_epoch(
+            model,
+            loaders["train"],
+            loss_cfg,
+            weighter,
+            pcgrad,
+            optimizer,
+            constraint_mgr,
+            device,
+            exp_cfg.training.grad_clip,
+        )
+        val_loss = evaluate(model, loaders["val"], loss_cfg, device)
+        print(f"Epoch {epoch}: train_loss={train_loss:.4f} val_loss={val_loss:.4f}")
+
+        if val_loss < best_val:
+            best_val = val_loss
+            torch.save(
+                {"model_state": model.state_dict(), "epoch": epoch, "val_loss": val_loss},
+                checkpoint_dir / "best.pt",
+            )
+
+        if save_every > 0 and epoch % save_every == 0:
+            torch.save(
+                {"model_state": model.state_dict(), "epoch": epoch, "val_loss": val_loss},
+                checkpoint_dir / f"epoch_{epoch}.pt",
+            )
+
+    test_loss = evaluate(model, loaders["test"], loss_cfg, device)
+    print(f"Test loss: {test_loss:.4f}")
+
+
+if __name__ == "__main__":
+    main()
