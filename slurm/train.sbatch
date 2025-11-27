@@ -7,9 +7,9 @@
 #SBATCH --qos=condo
 #SBATCH --cpus-per-task=16
 #SBATCH --gpus=1
-#SBATCH --mem=64G
+#SBATCH --mem=32G
 #SBATCH --time=24:00:00
-#SBATCH --chdir=/path/to/Rheidae  # TODO: set to project path on the cluster
+#SBATCH --chdir=~/Rheidae
 #SBATCH -o .slurm/output/train-%j.out
 #SBATCH -e .slurm/output/train-%j.err
 
