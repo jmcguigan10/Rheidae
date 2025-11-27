@@ -1,0 +1,17 @@
+
+[notice] A new release of pip is available: 25.2 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+Traceback (most recent call last):
+  File "/nfs/home/jmcguig1/Rheidae/scripts/train.py", line 381, in <module>
+    main()
+  File "/nfs/home/jmcguig1/Rheidae/scripts/train.py", line 376, in main
+    zero_baseline = evaluate_zero_residual(loaders["test"], loss_cfg, device)
+  File "/nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/nfs/home/jmcguig1/Rheidae/scripts/train.py", line 158, in evaluate_zero_residual
+    task_losses = compute_flux_losses(zero_pred, targets, loss_cfg)
+  File "/nfs/home/jmcguig1/Rheidae/src/rheidae/losses.py", line 40, in compute_flux_losses
+    density_mse = torch.mean((pred_den - true_den) ** 2)
+RuntimeError: The size of tensor a (256) must match the size of tensor b (120) at non-singleton dimension 0
+make[1]: *** [Makefile:25: train] Error 1
+srun: error: clrv1207: task 0: Exited with exit code 2

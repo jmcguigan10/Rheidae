@@ -1,0 +1,138 @@
+make[1]: Entering directory '/nfs/home/jmcguig1/Rheidae'
+/nfs/home/jmcguig1/venv_Emu/bin/pip install -r requirements.txt
+Requirement already satisfied: torch in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.7.1)
+Requirement already satisfied: pyyaml in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: h5py in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (3.13.0)
+Requirement already satisfied: numpy in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (1.26.4)
+Requirement already satisfied: matplotlib in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from -r requirements.txt (line 5)) (3.9.4)
+Requirement already satisfied: filelock in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.17.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (4.12.2)
+Requirement already satisfied: sympy>=1.13.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.2.1)
+Requirement already satisfied: jinja2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.1.5)
+Requirement already satisfied: fsspec in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2025.2.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from torch->-r requirements.txt (line 1)) (3.3.1)
+Requirement already satisfied: setuptools>=40.8.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from triton==3.3.1->torch->-r requirements.txt (line 1)) (80.9.0)
+Requirement already satisfied: contourpy>=1.0.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (1.3.0)
+Requirement already satisfied: cycler>=0.10 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (0.12.1)
+Requirement already satisfied: fonttools>=4.22.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (4.56.0)
+Requirement already satisfied: kiwisolver>=1.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (1.4.7)
+Requirement already satisfied: packaging>=20.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (24.2)
+Requirement already satisfied: pillow>=8 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (11.1.0)
+Requirement already satisfied: pyparsing>=2.3.1 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (3.2.1)
+Requirement already satisfied: python-dateutil>=2.7 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (2.9.0.post0)
+Requirement already satisfied: importlib-resources>=3.2.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from matplotlib->-r requirements.txt (line 5)) (6.5.2)
+Requirement already satisfied: zipp>=3.1.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from importlib-resources>=3.2.0->matplotlib->-r requirements.txt (line 5)) (3.21.0)
+Requirement already satisfied: six>=1.5 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from python-dateutil>=2.7->matplotlib->-r requirements.txt (line 5)) (1.17.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /nfs/home/jmcguig1/venv_Emu/lib/python3.9/site-packages (from jinja2->torch->-r requirements.txt (line 1)) (3.0.2)
+PYTHONPATH=src /nfs/home/jmcguig1/venv_Emu/bin/python scripts/train.py --config config/model.yaml --train-parms config/train_parms.yaml
+Run ID: 20251127-080551
+Run 20251127-080551 Epoch 1: train_loss=106.5956 val_loss=23.2013
+Run 20251127-080551 Epoch 2: train_loss=15.3399 val_loss=4.8085
+Run 20251127-080551 Epoch 3: train_loss=5.2131 val_loss=4.1662
+Run 20251127-080551 Epoch 4: train_loss=4.5292 val_loss=5.0522
+Run 20251127-080551 Epoch 5: train_loss=4.0152 val_loss=3.0003
+Run 20251127-080551 Epoch 6: train_loss=3.2266 val_loss=12.0555
+Run 20251127-080551 Epoch 7: train_loss=2.3765 val_loss=15.5320
+Run 20251127-080551 Epoch 8: train_loss=1.8312 val_loss=30.2835
+Run 20251127-080551 Epoch 9: train_loss=1.8237 val_loss=21.7955
+Run 20251127-080551 Epoch 10: train_loss=1.9905 val_loss=83.0684
+Run 20251127-080551 Epoch 11: train_loss=1.5136 val_loss=16.0086
+Run 20251127-080551 Epoch 12: train_loss=1.1062 val_loss=19.6942
+Run 20251127-080551 Epoch 13: train_loss=1.0751 val_loss=54.1747
+Run 20251127-080551 Epoch 14: train_loss=0.8668 val_loss=11.2914
+Run 20251127-080551 Epoch 15: train_loss=0.9168 val_loss=10.8144
+Run 20251127-080551 Epoch 16: train_loss=0.9564 val_loss=107.6410
+Run 20251127-080551 Epoch 17: train_loss=0.8699 val_loss=15.1961
+Run 20251127-080551 Epoch 18: train_loss=0.8144 val_loss=36.1201
+Run 20251127-080551 Epoch 19: train_loss=0.8909 val_loss=14.3238
+Run 20251127-080551 Epoch 20: train_loss=0.7505 val_loss=4.5653
+Run 20251127-080551 Epoch 21: train_loss=0.8164 val_loss=15.1281
+Run 20251127-080551 Epoch 22: train_loss=0.6957 val_loss=5.8640
+Run 20251127-080551 Epoch 23: train_loss=0.7988 val_loss=46.5116
+Run 20251127-080551 Epoch 24: train_loss=0.6710 val_loss=5.3749
+Run 20251127-080551 Epoch 25: train_loss=0.7029 val_loss=2.2164
+Run 20251127-080551 Epoch 26: train_loss=0.7760 val_loss=5.7351
+Run 20251127-080551 Epoch 27: train_loss=0.7205 val_loss=10.9715
+Run 20251127-080551 Epoch 28: train_loss=0.6557 val_loss=1.9969
+Run 20251127-080551 Epoch 29: train_loss=0.6459 val_loss=61.6916
+Run 20251127-080551 Epoch 30: train_loss=0.6142 val_loss=5.9156
+Run 20251127-080551 Epoch 31: train_loss=0.6974 val_loss=8.8234
+Run 20251127-080551 Epoch 32: train_loss=0.7580 val_loss=33.5392
+Run 20251127-080551 Epoch 33: train_loss=0.6527 val_loss=1.9226
+Run 20251127-080551 Epoch 34: train_loss=0.6544 val_loss=8.5643
+Run 20251127-080551 Epoch 35: train_loss=0.6551 val_loss=3.6809
+Run 20251127-080551 Epoch 36: train_loss=0.6222 val_loss=10.6461
+Run 20251127-080551 Epoch 37: train_loss=0.6402 val_loss=7.0296
+Run 20251127-080551 Epoch 38: train_loss=0.5737 val_loss=1.2702
+Run 20251127-080551 Epoch 39: train_loss=0.5750 val_loss=7.6860
+Run 20251127-080551 Epoch 40: train_loss=0.5688 val_loss=7.8291
+Run 20251127-080551 Epoch 41: train_loss=0.5986 val_loss=9.4443
+Run 20251127-080551 Epoch 42: train_loss=0.5663 val_loss=8.1888
+Run 20251127-080551 Epoch 43: train_loss=0.5749 val_loss=4.2909
+Run 20251127-080551 Epoch 44: train_loss=0.5555 val_loss=6.1261
+Run 20251127-080551 Epoch 45: train_loss=0.5383 val_loss=1.7441
+Run 20251127-080551 Epoch 46: train_loss=0.5348 val_loss=2.7067
+Run 20251127-080551 Epoch 47: train_loss=0.5385 val_loss=1.2234
+Run 20251127-080551 Epoch 48: train_loss=0.5353 val_loss=1.2188
+Run 20251127-080551 Epoch 49: train_loss=0.5257 val_loss=1.8156
+Run 20251127-080551 Epoch 50: train_loss=0.5218 val_loss=1.2869
+Run 20251127-080551 Epoch 51: train_loss=0.5180 val_loss=1.0732
+Run 20251127-080551 Epoch 52: train_loss=0.5203 val_loss=1.4636
+Run 20251127-080551 Epoch 53: train_loss=0.5208 val_loss=1.4003
+Run 20251127-080551 Epoch 54: train_loss=0.5196 val_loss=1.1471
+Run 20251127-080551 Epoch 55: train_loss=0.5166 val_loss=1.1570
+Run 20251127-080551 Epoch 56: train_loss=0.5147 val_loss=1.8393
+Run 20251127-080551 Epoch 57: train_loss=0.5120 val_loss=1.3372
+Run 20251127-080551 Epoch 58: train_loss=0.5111 val_loss=2.6105
+Run 20251127-080551 Epoch 59: train_loss=0.5100 val_loss=1.3270
+Run 20251127-080551 Epoch 60: train_loss=0.5112 val_loss=1.1484
+Run 20251127-080551 Epoch 61: train_loss=0.5085 val_loss=1.2961
+Run 20251127-080551 Epoch 62: train_loss=0.5085 val_loss=1.4603
+Run 20251127-080551 Epoch 63: train_loss=0.5083 val_loss=1.0907
+Run 20251127-080551 Epoch 64: train_loss=0.5069 val_loss=1.1285
+Run 20251127-080551 Epoch 65: train_loss=0.5069 val_loss=1.1778
+Run 20251127-080551 Epoch 66: train_loss=0.5071 val_loss=1.1285
+Run 20251127-080551 Epoch 67: train_loss=0.5065 val_loss=1.0608
+Run 20251127-080551 Epoch 68: train_loss=0.5063 val_loss=1.1839
+Run 20251127-080551 Epoch 69: train_loss=0.5067 val_loss=1.4907
+Run 20251127-080551 Epoch 70: train_loss=0.5061 val_loss=1.7576
+Run 20251127-080551 Epoch 71: train_loss=0.5063 val_loss=1.3358
+Run 20251127-080551 Epoch 72: train_loss=0.5059 val_loss=1.5306
+Run 20251127-080551 Epoch 73: train_loss=0.5057 val_loss=1.2485
+Run 20251127-080551 Epoch 74: train_loss=0.5056 val_loss=1.2617
+Run 20251127-080551 Epoch 75: train_loss=0.5056 val_loss=1.3835
+Run 20251127-080551 Epoch 76: train_loss=0.5055 val_loss=1.2848
+Run 20251127-080551 Epoch 77: train_loss=0.5052 val_loss=1.4628
+Run 20251127-080551 Epoch 78: train_loss=0.5054 val_loss=1.2951
+Run 20251127-080551 Epoch 79: train_loss=0.5053 val_loss=1.3716
+Run 20251127-080551 Epoch 80: train_loss=0.5050 val_loss=1.2177
+Run 20251127-080551 Epoch 81: train_loss=0.5051 val_loss=1.1700
+Run 20251127-080551 Epoch 82: train_loss=0.5053 val_loss=1.1954
+Run 20251127-080551 Epoch 83: train_loss=0.5054 val_loss=1.1882
+Run 20251127-080551 Epoch 84: train_loss=0.5051 val_loss=1.2007
+Run 20251127-080551 Epoch 85: train_loss=0.5050 val_loss=1.4384
+Run 20251127-080551 Epoch 86: train_loss=0.5048 val_loss=1.3095
+Run 20251127-080551 Epoch 87: train_loss=0.5048 val_loss=1.2790
+Run 20251127-080551 Epoch 88: train_loss=0.5051 val_loss=1.2235
+Run 20251127-080551 Epoch 89: train_loss=0.5047 val_loss=1.1799
+Run 20251127-080551 Epoch 90: train_loss=0.5051 val_loss=1.1904
+Run 20251127-080551 Epoch 91: train_loss=0.5050 val_loss=1.3194
+Run 20251127-080551 Epoch 92: train_loss=0.5048 val_loss=1.2131
+Early stopping at epoch 92 (patience=25, best_epoch=67, best_val=1.0608)
+make[1]: Leaving directory '/nfs/home/jmcguig1/Rheidae'
