@@ -1,0 +1,23 @@
+
+[notice] A new release of pip is available: 25.2 -> 25.3
+[notice] To update, run: pip install --upgrade pip
+Traceback (most recent call last):
+  File "/nfs/home/jmcguig1/Rheidae/scripts/train.py", line 316, in <module>
+    main()
+  File "/nfs/home/jmcguig1/Rheidae/scripts/train.py", line 186, in main
+    parser.add_argument(
+  File "/spack/spack-0.17.1/apps/linux-rhel8-cascadelake/gcc-10.2.0/python-3.9.10-y63csltfuw5dhi5qffpdm4zmmfupfkqg/lib/python3.9/argparse.py", line 1440, in add_argument
+    return self._add_action(action)
+  File "/spack/spack-0.17.1/apps/linux-rhel8-cascadelake/gcc-10.2.0/python-3.9.10-y63csltfuw5dhi5qffpdm4zmmfupfkqg/lib/python3.9/argparse.py", line 1805, in _add_action
+    self._optionals._add_action(action)
+  File "/spack/spack-0.17.1/apps/linux-rhel8-cascadelake/gcc-10.2.0/python-3.9.10-y63csltfuw5dhi5qffpdm4zmmfupfkqg/lib/python3.9/argparse.py", line 1642, in _add_action
+    action = super(_ArgumentGroup, self)._add_action(action)
+  File "/spack/spack-0.17.1/apps/linux-rhel8-cascadelake/gcc-10.2.0/python-3.9.10-y63csltfuw5dhi5qffpdm4zmmfupfkqg/lib/python3.9/argparse.py", line 1454, in _add_action
+    self._check_conflict(action)
+  File "/spack/spack-0.17.1/apps/linux-rhel8-cascadelake/gcc-10.2.0/python-3.9.10-y63csltfuw5dhi5qffpdm4zmmfupfkqg/lib/python3.9/argparse.py", line 1591, in _check_conflict
+    conflict_handler(action, confl_optionals)
+  File "/spack/spack-0.17.1/apps/linux-rhel8-cascadelake/gcc-10.2.0/python-3.9.10-y63csltfuw5dhi5qffpdm4zmmfupfkqg/lib/python3.9/argparse.py", line 1600, in _handle_conflict_error
+    raise ArgumentError(action, message % conflict_string)
+argparse.ArgumentError: argument --run-id: conflicting option string: --run-id
+make[1]: *** [Makefile:25: train] Error 1
+srun: error: clrv1207: task 0: Exited with exit code 2
