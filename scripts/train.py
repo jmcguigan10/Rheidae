@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -157,6 +158,11 @@ def main():
         action="store_true",
         help="Override train_parms to train on (F_true - F_box).",
     )
+    parser.add_argument(
+        "--run-id",
+        default=None,
+        help="Optional run identifier; defaults to timestamp YYYYmmdd-HHMMSS.",
+    )
     args = parser.parse_args()
 
     exp_cfg = ExperimentConfig.load(args.config)
@@ -200,10 +206,22 @@ def main():
     task_names = _active_tasks(loss_cfg)
     weighter = _build_weighter(train_cfg.get("weighting", {}), task_names, device)
 
+    run_id = args.run_id or datetime.now().strftime("%Y%m%d-%H%M%S")
+
     best_val = float("inf")
     save_every = int(train_cfg.get("logging", {}).get("save_every", 0) or 0)
-    checkpoint_dir = Path(exp_cfg.training.checkpoint_dir)
+    checkpoint_root = Path(exp_cfg.training.checkpoint_dir)
+    checkpoint_dir = checkpoint_root / run_id
     checkpoint_dir.mkdir(parents=True, exist_ok=True)
+
+    early_cfg = train_cfg.get("early_stop", {}) or {}
+    early_enabled = bool(early_cfg.get("enabled", False))
+    patience = int(early_cfg.get("patience", 5))
+    min_delta = float(early_cfg.get("min_delta", 0.0))
+    no_improve = 0
+    best_epoch = 0
+
+    print(f"Run ID: {run_id}")
 
     for epoch in range(1, exp_cfg.training.epochs + 1):
         train_loss = train_one_epoch(
@@ -218,23 +236,36 @@ def main():
             exp_cfg.training.grad_clip,
         )
         val_loss = evaluate(model, loaders["val"], loss_cfg, device)
-        print(f"Epoch {epoch}: train_loss={train_loss:.4f} val_loss={val_loss:.4f}")
+        print(
+            f"Run {run_id} Epoch {epoch}: train_loss={train_loss:.4f} val_loss={val_loss:.4f}"
+        )
 
-        if val_loss < best_val:
+        improved = val_loss < (best_val - min_delta)
+        if improved or best_val == float("inf"):
             best_val = val_loss
+            best_epoch = epoch
+            no_improve = 0
             torch.save(
                 {"model_state": model.state_dict(), "epoch": epoch, "val_loss": val_loss},
-                checkpoint_dir / "best.pt",
+                checkpoint_dir / f"best-{run_id}.pt",
             )
+        else:
+            no_improve += 1
 
         if save_every > 0 and epoch % save_every == 0:
             torch.save(
                 {"model_state": model.state_dict(), "epoch": epoch, "val_loss": val_loss},
-                checkpoint_dir / f"epoch_{epoch}.pt",
+                checkpoint_dir / f"epoch_{epoch}-{run_id}.pt",
             )
 
+        if early_enabled and no_improve >= patience:
+            print(
+                f"Early stopping at epoch {epoch} (patience={patience}, best_epoch={best_epoch}, best_val={best_val:.4f})"
+            )
+            break
+
     test_loss = evaluate(model, loaders["test"], loss_cfg, device)
-    print(f"Test loss: {test_loss:.4f}")
+    print(f"Run {run_id} Test loss: {test_loss:.4f}")
 
 
 if __name__ == "__main__":

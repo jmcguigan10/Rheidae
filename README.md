@@ -42,7 +42,7 @@ Outputs per-sim files in `.pdata/*_preprocessed.h5` and a combined `.pdata/prepr
 
 ## Training configs
 - `config/model.yaml`: data/model/optimizer/scheduler/training/loss hyperparams.
-- `config/train_parms.yaml`: loss weighting (`kendall_gal`|`dwa`|`gradnorm`|`none`), `pcgrad` toggle, `predict_residual` toggle, constraint settings, checkpoint cadence.
+- `config/train_parms.yaml`: loss weighting (`kendall_gal`|`dwa`|`gradnorm`|`none`), `pcgrad` toggle, `predict_residual` toggle, constraint settings, checkpoint cadence, and early stopping (`early_stop.enabled`, `patience`, `min_delta`).
 
 CLI options (scripts/train.py):
 ```bash
@@ -60,6 +60,7 @@ PYTHONPATH=src .venv/bin/python scripts/train.py \
 - `make smoke`: one-batch forward/backward sanity check (num_workers=0).
 - `make clean`: remove `.venv`, `checkpoints/`, `results/`.
 - `make slurm-train`: submit the Slurm script at `.slurm/train.sbatch` (run on the cluster where `sbatch` is available).
+- `make plot-loss LOG=path/to/log`: parse `Epoch ... train_loss=... val_loss=...` lines and save `results/loss_curve.png`.
 
 ## Slurm submission
 A template Slurm script lives at `.slurm/train.sbatch`. Adjust `--chdir` to your cluster path and venv path as needed (defaults to `/nfs/home/jmcguig1/venv_Emu`). Logs go to `.slurm/output/train-%j.out|err`. It runs `make install`, checks for `.pdata/preprocessed_all.h5` and runs `make preprocess` if missing, then runs `make train`, honoring `VENV` from the environment so you can override the venv path without editing the Makefile.

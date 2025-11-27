@@ -7,7 +7,7 @@ PYTHONPATH := src
 .ONESHELL:
 .SHELLFLAGS := -eu -o pipefail -c
 
-.PHONY: setup install preprocess train train-residual smoke clean slurm-train
+.PHONY: setup install preprocess train train-residual smoke clean slurm-train plot-loss
 
 setup: install
 
@@ -32,8 +32,12 @@ smoke: install
 clean:
 	rm -rf $(VENV) checkpoints results
 
-SLURM_SCRIPT := slurm/train.sbatch
+SLURM_SCRIPT := .slurm/train.sbatch
 
 slurm-train:
 	@[ -f $(SLURM_SCRIPT) ] || (echo "Missing $(SLURM_SCRIPT); edit or copy it before submitting." && exit 1)
 	sbatch $(SLURM_SCRIPT)
+
+plot-loss: install
+	@[ -n "$(LOG)" ] || (echo "Set LOG=<path to training log containing 'Epoch ... train_loss=... val_loss=...'>"; exit 1)
+	PYTHONPATH=$(PYTHONPATH) $(PY) scripts/plot_losses.py --log $(LOG) --out results/loss_curve.png
