@@ -134,7 +134,7 @@ class ExperimentConfig:
             "w_density": 1.0,
             "w_magnitude": 1.0,
             "w_direction": 1.0,
-            "w_unphysical": 25.0,
+            "w_unphysical": 0.0,
             "w_residual_l1": 0.2,
             "density_floor": 0.1,
             "speed_of_light": 1.0,
