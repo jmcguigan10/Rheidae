@@ -10,7 +10,7 @@ import yaml
 
 from rheidae.config import ExperimentConfig, LossConfig
 from rheidae.data_loader import build_dataloaders
-from rheidae.losses import compute_flux_losses
+from rheidae.losses import compute_flux_losses, compute_constraint_vec
 from rheidae.model import ResidualFFIModel
 from rheidae.pcgrad import PCGrad
 from rheidae.ecm import EqualityConstraintManager
@@ -96,9 +96,7 @@ def train_one_epoch(
         augmented_loss = total_task_loss
         extra_task = []
         if constraint_mgr is not None:
-            c_vec = torch.zeros(
-                constraint_mgr.num_constraints, device=device, dtype=targets.dtype
-            )
+            c_vec = compute_constraint_vec(preds, loss_cfg)
             augmented_loss = constraint_mgr.augment_loss(total_task_loss, c_vec)
             extra_task = [augmented_loss - total_task_loss]
 
@@ -141,6 +139,28 @@ def evaluate(
     return total / max(n_batches, 1)
 
 
+@torch.no_grad()
+def evaluate_zero_residual(
+    loader: torch.utils.data.DataLoader, loss_cfg: LossConfig, device
+) -> float:
+    """
+    Baseline loss if we predict zero residual (i.e., use F_box directly as prediction).
+    When predict_residual=True, targets = F_true - F_box, so zero corresponds to Box3D.
+    When predict_residual=False, this returns the loss of a zero tensor vs target.
+    """
+    total = 0.0
+    n_batches = 0
+    zero_pred = None
+    for batch in loader:
+        targets = batch["target"].to(device)
+        if zero_pred is None:
+            zero_pred = torch.zeros_like(targets)
+        task_losses = compute_flux_losses(zero_pred, targets, loss_cfg)
+        total += sum(task_losses.values()).item()
+        n_batches += 1
+    return total / max(n_batches, 1)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -157,6 +177,11 @@ def main():
         "--predict-residual",
         action="store_true",
         help="Override train_parms to train on (F_true - F_box).",
+    )
+    parser.add_argument(
+        "--run-id",
+        default=None,
+        help="Optional run identifier; defaults to timestamp YYYYmmdd-HHMMSS.",
     )
     parser.add_argument(
         "--run-id",
@@ -221,6 +246,19 @@ def main():
     no_improve = 0
     best_epoch = 0
 
+    # LR scheduler (optional)
+    sched_cfg = train_cfg.get("lr_scheduler", {}) or {}
+    scheduler = None
+    sched_type = sched_cfg.get("type", "none")
+    if sched_type == "reduce_on_plateau":
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer,
+            factor=float(sched_cfg.get("factor", 0.5)),
+            patience=int(sched_cfg.get("patience", 5)),
+            threshold=float(sched_cfg.get("threshold", 1e-3)),
+            min_lr=float(sched_cfg.get("min_lr", 1e-6)),
+        )
+
     print(f"Run ID: {run_id}")
 
     for epoch in range(1, exp_cfg.training.epochs + 1):
@@ -239,6 +277,11 @@ def main():
         print(
             f"Run {run_id} Epoch {epoch}: train_loss={train_loss:.4f} val_loss={val_loss:.4f}"
         )
+
+        if scheduler is not None and isinstance(
+            scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau
+        ):
+            scheduler.step(val_loss)
 
         improved = val_loss < (best_val - min_delta)
         if improved or best_val == float("inf"):
@@ -265,7 +308,8 @@ def main():
             break
 
     test_loss = evaluate(model, loaders["test"], loss_cfg, device)
-    print(f"Run {run_id} Test loss: {test_loss:.4f}")
+    zero_baseline = evaluate_zero_residual(loaders["test"], loss_cfg, device)
+    print(f"Run {run_id} Test loss: {test_loss:.4f} | Box3D baseline (zero residual) loss: {zero_baseline:.4f}")
 
 
 if __name__ == "__main__":

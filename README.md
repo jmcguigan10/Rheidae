@@ -42,7 +42,7 @@ Outputs per-sim files in `.pdata/*_preprocessed.h5` and a combined `.pdata/prepr
 
 ## Training configs
 - `config/model.yaml`: data/model/optimizer/scheduler/training/loss hyperparams.
-- `config/train_parms.yaml`: loss weighting (`kendall_gal`|`dwa`|`gradnorm`|`none`), `pcgrad` toggle, `predict_residual` toggle, constraint settings, checkpoint cadence, and early stopping (`early_stop.enabled`, `patience`, `min_delta`).
+- `config/train_parms.yaml`: loss weighting (`kendall_gal`|`dwa`|`gradnorm`|`none`), `pcgrad` toggle, `predict_residual` toggle, constraint settings, checkpoint cadence, early stopping (`early_stop.enabled`, `patience`, `min_delta`), and LR scheduler (`lr_scheduler.type`, `factor`, `patience`, `min_lr`, `threshold`).
 
 CLI options (scripts/train.py):
 ```bash

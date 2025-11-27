@@ -69,3 +69,26 @@ def compute_flux_losses(
         raise ValueError("No loss components enabled; check the loss weights in config.")
 
     return losses
+
+
+def compute_constraint_vec(preds_flat: torch.Tensor, cfg: LossConfig) -> torch.Tensor:
+    """
+    Compute simple physical constraint violations for use with EqualityConstraintManager.
+    Returns a vector:
+      c0 = mean negative density (should be >= 0; negative means violation)
+      c1 = mean excess speed over c (|F| / density - c, clipped below at 0)
+    """
+    preds = _reshape_flux(preds_flat)
+    vec = preds[:, :, 0:3]
+    den = preds[:, :, 3]
+
+    # c0: negative density magnitude
+    c0 = torch.relu(-den).mean()
+
+    # c1: excess speed ratio
+    mag = torch.linalg.norm(vec, dim=-1)
+    den_safe = den.abs().clamp(min=cfg.density_floor)
+    speed_ratio = mag / den_safe
+    c1 = torch.relu(speed_ratio - cfg.speed_of_light).mean()
+
+    return torch.stack([c0, c1])
