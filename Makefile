@@ -1,5 +1,5 @@
 PYTHON ?= python3
-VENV := .venv
+VENV ?= .venv
 PIP := $(VENV)/bin/pip
 PY := $(VENV)/bin/python
 PYTHONPATH := src
@@ -7,7 +7,7 @@ PYTHONPATH := src
 .ONESHELL:
 .SHELLFLAGS := -eu -o pipefail -c
 
-.PHONY: setup install preprocess train train-residual smoke clean
+.PHONY: setup install preprocess train train-residual smoke clean slurm-train
 
 setup: install
 
@@ -31,3 +31,9 @@ smoke: install
 
 clean:
 	rm -rf $(VENV) checkpoints results
+
+SLURM_SCRIPT := .slurm/train.sbatch
+
+slurm-train:
+	@[ -f $(SLURM_SCRIPT) ] || (echo "Missing $(SLURM_SCRIPT); edit or copy it before submitting." && exit 1)
+	sbatch $(SLURM_SCRIPT)
