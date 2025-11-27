@@ -20,7 +20,7 @@ constraints:
 
 early_stop:
   enabled: true
-  patience: 25
+  patience: 50
   min_delta: 0.0
 
 lr_scheduler:
