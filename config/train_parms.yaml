@@ -1,27 +1,27 @@
 # Training control parameters that are orthogonal to the model definition.
 
 weighting:
-  # Options: "kendall_gal", "dwa", "gradnorm", "none"
-  scheme: "kendall_gal"
-  params:
-    T: 2.0           # for DWA
-    alpha: 1.5       # for GradNorm
-    lambda_gradnorm: 0.1
+    # Options: "kendall_gal", "dwa", "gradnorm", "none"
+    scheme: "kendall_gal"
+    params:
+        T: 2.0 # for DWA
+        alpha: 1.5 # for GradNorm
+        lambda_gradnorm: 0.1
 
-pcgrad: true          # apply PCGrad to per-task losses
+pcgrad: true # apply PCGrad to per-task losses
 
-predict_residual: false  # if true, train on (F_true - F_box); requires F_box_flat in data
+predict_residual: true # if true, train on (F_true - F_box); requires F_box_flat in data
 
 constraints:
-  enabled: false
-  num_constraints: 0
-  lr_lambda: 1.0e-2
-  rho: 0.0
+    enabled: false
+    num_constraints: 0
+    lr_lambda: 1.0e-2
+    rho: 0.0
 
 early_stop:
-  enabled: true
-  patience: 5
-  min_delta: 0.0
+    enabled: true
+    patience: 30
+    min_delta: 0.0
 
 logging:
-  save_every: 0       # set >0 to checkpoint every N epochs; 0 disables
+    save_every: 0 # set >0 to checkpoint every N epochs; 0 disables
